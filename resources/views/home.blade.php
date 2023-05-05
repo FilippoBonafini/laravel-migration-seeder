@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
+@section('page.title')
+    Home page
+@endsection
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
-    @vite('resources/js/app.js')
-</head>
-
-<body>
+@section('page.main')
     @foreach ($train_list as $train)
-        {{-- {{dd(urlencode($movie->title))}} --}}
-        <li> {{ $train->azienda }} </li>
+        <div>
+            <h2>{{ $train->stazione_partenza }}
+                <span class="fs-5">{{ '(' . $train->orario_partenza . ')' }}</span>
+                ->
+                {{ $train->stazione_arrivo }}
+                <span class="fs-5"> {{ '(' . $train->orario_arrivo . ')' }} </span>
+            </h2>
+        </div>
     @endforeach
-</body>
-
-</html>
+@endsection
