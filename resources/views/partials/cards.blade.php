@@ -24,11 +24,13 @@
                 <div>@include('partials/svg.arrowSvg')</div>
                 <div class="fs-2">{{ $train->stazione_arrivo }}</div>
                 <div class="px-4">
+                    {{-- ESTRAPOLO DALLA STRINGA SOLO I PRIMI 5 CARATTERI (L'ORA) --}}
                     ora: {{ substr($train->orario_partenza, 11, 5) }}
                 </div>
                 {{-- SE LA DATA CORRISPONDE A QUELLA ODIERNA NON MOSTRARE QUESTA INFO --}}
+                {{-- UTILIZZO CARBON  --}}
                 <div class="{{ \Carbon\Carbon::parse($train->orario_partenza)->isToday() ? 'd-none' : '' }}">
-                    data: {{ \Carbon\Carbon::parse($train->orario_partenza)->format('m-d') }}
+                    data: {{ \Carbon\Carbon::parse($train->orario_partenza)->format('d-m') }}
                 </div>
 
             </div>
