@@ -10,10 +10,13 @@
 
 
 <body>
+    {{-- INCLUDIAMO L'HEADER  --}}
     @include('partials.header')
+
     <main class="container">
         @yield('page.main')
     </main>
+
 </body>
 
 </html>

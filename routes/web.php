@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ROTTA DELLA PAGINA PRINCIPALE CHE RICHIAMA PAGE CONTROLLER
 Route::get('/', [PageController::class, 'index'])->name('home');
