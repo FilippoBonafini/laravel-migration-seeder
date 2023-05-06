@@ -11,12 +11,14 @@ class PageController extends Controller
 {
     public function index()
     {
+        //dd(\Carbon\Carbon::now('Europe/Rome'));
+
         // $train_list = Train::all(); -> mostra tutti i treni
         // $train_list = Train::orderBy('orario_partenza', 'desc')->get(); ->mostra tutti i treni in ordine di data
-        $train_list = Train::where('orario_partenza', '>', \Carbon\Carbon::now())
+        $train_list = Train::where('orario_partenza', '>', \Carbon\Carbon::now('Europe/Rome'))
             ->orderBy('orario_partenza', 'asc')
             ->get(); // -> mostra tutti i treni in ordine di data escludendo quelli precedenti
-        //dalla data odierna (utilizza la libreria carbon per trovare la data odierna)
+        //dalla data e all'ora odierna (utilizza la libreria carbon per trovare la data odierna)
 
 
 
