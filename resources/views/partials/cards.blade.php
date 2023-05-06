@@ -26,9 +26,11 @@
                 <div class="px-4">
                     ora: {{ substr($train->orario_partenza, 11, 5) }}
                 </div>
-                <div class="">
-                    data: {{ date('m-d', strtotime($train->orario_partenza)) }}
+                {{-- SE LA DATA CORRISPONDE A QUELLA ODIERNA NON MOSTRARE QUESTA INFO --}}
+                <div class="{{ \Carbon\Carbon::parse($train->orario_partenza)->isToday() ? 'd-none' : '' }}">
+                    data: {{ \Carbon\Carbon::parse($train->orario_partenza)->format('m-d') }}
                 </div>
+
             </div>
             {{-- /INFORMAZIONI SULLE DESTINAZIONI E ORARI  --}}
 
@@ -36,10 +38,13 @@
 
             {{-- INFORMAZIONI SU EVENTUALI DISAGI  --}}
             <div class=" mx-4 d-flex justify-content-center align-items-center">
+                {{-- SE IL TRENO E' IN RITARDO MOSTRA QUESTO ELEMENTO ALTRIMENTI NO  --}}
                 <div class="  {{ $train->ritardo_treno == '1' ? 'd-flex' : 'd-none' }}">
                     <span class="px-3">Lieve ritardo</span>
                     @include('partials/svg.lateSvg')
                 </div>
+
+                {{-- SE IL TRENO E' IN RITARDO MOSTRA QUESTO ELEMENTO ALTRIMENTI NO  --}}
                 <div class="{{ $train->cancellato_treno == '1' ? 'd-flex' : 'd-none' }}">
                     <span class="px-3">Treno cancellato</span>
                     @include('partials/svg.abortedSvg')
