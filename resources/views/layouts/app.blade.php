@@ -10,6 +10,7 @@
 
 
 <body>
+
     {{-- INCLUDIAMO L'HEADER  --}}
     @include('partials.header')
 
