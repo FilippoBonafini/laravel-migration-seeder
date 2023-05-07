@@ -3,7 +3,7 @@
 
 {{-- SEZIONE TITOLO DEL LAYOUT --}}
 @section('page.title')
-    Home page
+    Booltrain
 @endsection
 {{-- /SEZIONE TITOLO DEL LAYOUT --}}
 

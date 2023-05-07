@@ -33,27 +33,33 @@
             {{-- INFORMAZIONI SULLE DESTINAZIONI E ORARI  --}}
             <div class="d-flex align-items-center gap-4">
 
-                <div class="fs-2">{{ $train->stazione_partenza }}</div>
+                <div class="d-flex align-items-end gap-2">
+                    <div class="fs-2">
+                        {{ $train->stazione_partenza }}
+                    </div>
+                    <span>
+                        {{-- ESTRAPOLO DALLA STRINGA SOLO I PRIMI 5 CARATTERI (L'ORA) --}}
+                        {{ '(' . substr($train->orario_partenza, 11, 5) . ')' }}
+                    </span>
+                </div>
 
                 <div>@include('partials/svg.arrowSvg')</div>
 
-                <div class="fs-2">{{ $train->stazione_arrivo }}</div>
+                <div class="d-flex align-items-end gap-2">
+                    <div class="fs-2">
+                        {{ $train->stazione_arrivo }}
+                    </div>
+                    <span>
+                        {{-- ESTRAPOLO DALLA STRINGA SOLO I PRIMI 5 CARATTERI (L'ORA) --}}
+                        {{ '(' . substr($train->orario_arrivo, 11, 5) . ')' }}
+                    </span>
+                </div>
 
                 {{-- SE LA DATA CORRISPONDE A QUELLA ODIERNA NON MOSTRARE QUESTA INFO --}}
                 {{-- UTILIZZO CARBON  --}}
                 <div
                     class="{{ \Carbon\Carbon::parse($train->orario_partenza)->isToday('Europe/Rome') ? 'd-none' : '' }}">
                     data: {{ \Carbon\Carbon::parse($train->orario_partenza)->format('d-m') }}
-                </div>
-
-                <div class="px-4">
-                    {{-- ESTRAPOLO DALLA STRINGA SOLO I PRIMI 5 CARATTERI (L'ORA) --}}
-                    partenza: {{ substr($train->orario_partenza, 11, 5) }}
-                </div>
-
-                <div class="px-4">
-                    {{-- ESTRAPOLO DALLA STRINGA SOLO I PRIMI 5 CARATTERI (L'ORA) --}}
-                    arrivo: {{ substr($train->orario_arrivo, 11, 5) }}
                 </div>
 
             </div>
